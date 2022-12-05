@@ -4,16 +4,22 @@
 			<text class="icon" :class="item.icon"></text>
 			<view class="inp_btn">
 				<input class="inout" :type="item.type" :placeholder="item.placeholder" v-model.sync="value[item.prop]">
-				<button @click="bten" class="btns" v-if="item.prop==='code'">{{btnText.title}}</button>
+				<button @click="bten" class="btns" v-if="item.prop==='code'">{{btnTexts.title}}</button>
 			</view>
 		</view>
-		
 	</view>
 </template>
 
 <script>
+
 	export default{
 		name:"myinput",
+		data(){
+			return{
+				timeflag: false,
+				time: null,
+			}
+		},
 		props:{
 			value:{
 				type:Object,
@@ -23,15 +29,34 @@
 				type:Array,
 				default:()=>[]
 			},
-			btnText:{
+			btnTexts:{
 				type:Object,
 				default:()=>{}
 			}
 		},
+		
 		methods:{
 			bten(){
+				console.log(this.btnTexts,'btnTexts');
+				// this.setTiem()
 				this.$emit('send')
-			}
+			},
+			// setTiem() {
+			// 	//当timeflag为true 给他return掉
+			// 	// 只能点一次 防抖节流
+			// 	if (this.timeflag) return
+			// 	this.timeflag = true
+			// 	let num = 60
+			// 	this.time = setInterval(() => {
+			// 		num--
+			// 		this.btnText = num + 's'
+			// 		if (num <= 0) {
+			// 			this.btnText = '发送'
+			// 			clearInterval(this.time)
+			// 			this.time = null
+			// 		}
+			// 	}, 1000)
+			// },
 		}
 		
 	}

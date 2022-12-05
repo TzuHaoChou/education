@@ -8,10 +8,18 @@
 		}, {
 			"path": "pages/my/my",
 			"style": {
-				"navigationBarTitleText": "",
+				"navigationBarTitleText": "我的",
+				"enablePullDownRefresh": false,
 				"navigationBarBackgroundColor": "#5ccc84",
+				"navigationBarTextStyle": "white",
 				"app-plus": {
-					"titleNView": false
+					"titleNView": {
+						"titleAlign": "left",
+						"buttons": [{
+							"type": "menu"
+						}]
+					}
+
 				}
 			}
 		}, {
@@ -21,64 +29,72 @@
 				"enablePullDownRefresh": false
 			}
 
-		}
-	    ,{
-            "path" : "pages/my-coupon/my-coupon",
-            "style" :                                                                                    
-            {
-                "navigationBarTitleText": "",
-                "enablePullDownRefresh": false
-            }
-            
-        }
-        ,{
-            "path" : "pages/commonwt/commonwt",
-            "style" :                                                                                    
-            {
-                "navigationBarTitleText": "",
-                "enablePullDownRefresh": false
-            }
-            
-        }
-        ,{
-            "path" : "pages/Setupthe/Setupthe",
-            "style" :                                                                                    
-            {
-                "navigationBarTitleText": "",
-                "enablePullDownRefresh": false
-            }
-            
-        }
-        ,{
-            "path" : "pages/login/login",
-            "style" :                                                                                    
-            {
-                "enablePullDownRefresh": false,
+		}, {
+			"path": "pages/my-coupon/my-coupon",
+			"style": {
+				"navigationBarTitleText": "",
+				"enablePullDownRefresh": false
+			}
+
+		}, {
+			"path": "pages/commonwt/commonwt",
+			"style": {
+				"navigationBarTitleText": "",
+				"enablePullDownRefresh": false
+			}
+
+		}, {
+			"path": "pages/Setupthe/Setupthe",
+			"style": {
+				"navigationBarTitleText": "我的设置",
+				"enablePullDownRefresh": false,
+				"navigationBarBackgroundColor": "#fff"
+			}
+
+		}, {
+			"path": "pages/login/login",
+			"style": {
+				"enablePullDownRefresh": false,
 				"app-plus": {
 					"titleNView": false
 				}
-            }
-            
-        }
-        
-        ,{
-            "path" : "pages/my/password",
+			}
+
+		}
+
+		, {
+			"path": "pages/my/password",
+			"style": {
+				"enablePullDownRefresh": false,
+				"app-plus": {
+					"titleNView": false
+				}
+			}
+
+		}, {
+			"path": "pages/my/binding",
+			"style": {
+				"enablePullDownRefresh": false,
+				"app-plus": {
+					"titleNView": false
+				}
+			}
+
+		}, {
+			"path": "pages/my/myuserinfo",
+			"style": {
+				"navigationBarTitleText": "",
+				"enablePullDownRefresh": false
+			}
+
+		}
+	    ,{
+            "path" : "pages/my/user-safe",
             "style" :                                                                                    
             {
                 "navigationBarTitleText": "",
                 "enablePullDownRefresh": false
             }
-            
-        }
-        ,{
-            "path" : "pages/my/binding",
-            "style" :                                                                                    
-           {
-              "enablePullDownRefresh": false,
-              "app-plus": {
-              	"titleNView":false
-              }
-           }
             
         }
     ],

@@ -3,26 +3,30 @@ import Vuex from "vuex"
 //引入本地存储
 import {TOKEN_KEY,USER_KEY} from "@/config/Storage.js"
 Vue.use(Vuex)
+let INFO = "info"
+let TOKEN = "token"
 const store = new Vuex.Store({
 	state: {
-		token: uni.getStorageInfoSync(TOKEN_KEY) || "",
-		userinfo:uni.getStorageInfoSync(USER_KEY) || {}
+		info:uni.getStorageSync(INFO) || {},
+		token:uni.getStorageSync(TOKEN) || null,
 	},
 	mutations:{
+		init(state){
+			state.token = uni.getStorageSync(TOKEN) || ""
+		},
 		login(state,data){
-			state.userinfo=data
 			if(data){
-				uni.getStorageInfoSync(USER_KEY,state.userinfo)
+				uni.setStorageSync(INFO,data) 
 			}
 			if(data.token){
-				uni.getStorageInfoSync(TOKEN_KEY,data.token)
+				uni.setStorageSync(TOKEN,data.token) 
 			}
 		}
 	},
 	getters: {
-		getToken(state) {
-			return !state.token
-		}
+		getTokens(state){
+			return !!state.token
+		},
 	}
 })
 export default store

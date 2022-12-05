@@ -1,6 +1,9 @@
 <template>
 	<view>
-		SZ
+		<my-list @navto="navto"></my-list>
+		<view class="btns p-2" v-if="$store.getters.getTokens">
+			<button class="bg-main btn">退出登录</button>
+		</view>
 	</view>
 </template>
 
@@ -10,6 +13,14 @@
 			return {
 				
 			};
+		},
+		methods:{
+			navto(e){
+				console.log(e,'修改');
+				uni.navigateTo({
+					url:"/"+e
+				})
+			}
 		}
 	}
 </script>

@@ -1,35 +1,43 @@
 <template>
 	<view class="box-list" @click="navto">
-
 		<view class="mytxt">
-			<view class="tit">
-				<view class="left">我的</view>
-				<view class="reight iconfont icon-gengduo"></view>
-			</view>
-			<immediately></immediately>
+			<immediately :getToken="getToken" :infoList="infoList" @gitlogin="gitlogin"></immediately>
 			<tabr-my></tabr-my>
 		</view>
-		<my-list></my-list>
+		<my-list :myinfolist="myinfolist"></my-list>
 	</view>
 </template>
 
 <script>
+	import myusinfolist from "@/config/usinfo-list.js"
+	import {TOKEN_KEY,USER_KEY} from "@/config/Storage.js"
 	export default {
 		data() {
 			return {
-
+				getToken: false,
+				infoList:{},
+				myinfolist:myusinfolist()
 			}
+		},
+		onShow() {
+			this.infoList = uni.getStorageSync('info') || {}
+			this.getToken = !!uni.getStorageSync('token')
 		},
 		methods: {
 			navto() {
-			console.log(this.getToken);
-			if(this.getToken){
-				console.log('已登录');
-			}else{
+				console.log(this.getToken);
+				if (this.getToken) {
+					console.log('已登录');
+				} else {
+					uni.navigateTo({
+						url: '/pages/login/login'
+					})
+				}
+			},
+			gitlogin() {
 				uni.navigateTo({
-					url:'/pages/login/login'
+					url: '/pages/login/login'
 				})
-			}
 			}
 		}
 	}
@@ -37,41 +45,13 @@
 
 <style lang="scss">
 	.box-list {
-		width: 750rpx;
+		width: 100%;
 		height: 100%;
-
 		.mytxt {
-			border: 0;
-			width: 100%;
-			height: 528rpx;
-			background-color: #5ccc84;
-			border-bottom-left-radius: 80rpx;
-			border-bottom-right-radius: 80rpx;
-		}
-
-		.tit {
-			width: 100%;
-			// display: flex;
-			color: #fff;
-			font-size: 50rpx;
-			// align-items: center;
-			height: 10vh;
-			line-height: 10vh;
-			// background-color: red;
-			position: absolute;
-			position: relative;
-			top: 10rpx;
-
-			.left {
-				float: left;
-				margin-left: 20rpx;
-			}
-
-			.reight {
-				float: right;
-				margin-right: 20px;
-				font-size: 50rpx;
-			}
+		height: 320rpx;
+		background-color: #5ccc84;
+		// padding: 20rpx;
+		border-radius: 0 0 60rpx 60rpx;
 		}
 	}
 </style>

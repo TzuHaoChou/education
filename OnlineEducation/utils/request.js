@@ -3,9 +3,13 @@ import store from "@/store/index.js"
 const request = (options) => {
 	// const appid ='bd9d01ecc75dbbaaefce'
 	const appid = configApi.appid
+	// const token=configApi.token
 	// const token = configApi.token
-	const token =store.state.token
+	const token = store.state.token
+	// const token=store.state.token
+	
 	return new Promise((resolve, reject) => {
+		console.log(token,'token');
 		console.log(configApi.baseURL, 'config.baseURL');
 		uni.request({
 			url: configApi.baseURL + options.url,

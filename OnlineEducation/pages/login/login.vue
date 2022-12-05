@@ -71,79 +71,58 @@
 		},
 		methods: {
 			// 返回上级
-			back(){
+			back() {
 				uni.navigateBack()
 			},
 			//登录账号api
 			login() {
 				if (this.loginFlag) {
 					if (this.checkflag) {
-						this.haderLogin()
-					}else{
+						
+					} else {
 						this.$util.msg('请先阅读并同意用户协议&隐私声明')
 						console.log('123');
 						// this.checkflag=true
 						return
 					}
-					
+					this.haderLogin()
 				} else {
+					console.log('455555');
 					this.registered()
 				}
-				
-				// 注册
+
 			},
 			// 登录
 			async haderLogin(){
-				// 调取接口判断code码
-				// 登录成功判断用户是否绑定手机号没有跳转绑定手机号页面 && 已绑定直接跳转my页面
-				try{
-					const res =await loginApi.login(this.form)
-					if(res.statusCode==200){
-						this.$util.msg('登录成功')
-						this.$store.commit("login",res.data.data)
-						if(res.data.data.phone){
-							uni.switchTab({
-								url:"/pages/my/my"
-							})
-						}else{
-							uni.navigateTo({
-								url:"/pages/my/binding"
-							})
+						try{
+							const res = await loginApi.login(this.form)
+							if (res.statusCode !== 200) {
+								this.$util.msg(res.data.data)
+							} else {
+								this.$util.msg('登陆成功')
+								this.$store.commit('login', res.data.data)
+								// console.log(this.phone);
+								if (!res.data.data.phone) {
+									uni.navigateTo({
+										url:"/pages/my/binding"
+									})
+								} else {
+									uni.switchTab({
+										url: '/pages/my/my'
+									});
+									this.$store.commit('init')
+								}
+							}
+						}catch(e){
+							console.log(e);
+							//TODO handle the exception
 						}
-					}else{
-						this.$util.msg(res.data.data)
-					}
-					console.log(res,'登录res');
-				}catch(e){
-					console.log(e,'55');
-					//TODO handle the exception
-				}
 			},
 			// 注册功能
 			async registered() {
-				console.log(loginApi, '555');
-				try {
-					const res = await loginApi.registeredUser(this.form)
-					console.log(res.data,'res注册');
-					if (res.statusCode !== 20000) {
-						this.$util.msg(res.data.data)
-					}
-					if (res.data.code === 20000) {
-						this.$util.msg('注册成功')
-						uni.navigateTo({
-							url: "/pages/my/binding"
-						})
-						this.form = {
-							username: "",
-							password: "",
-							repassword: "",
-						}
-						this.loginFlagChange()
-					}
-					uni.hideLoading()
-				} catch (e) {
-					//TODO handle the exception
-				}
+				const res = await loginApi.registeredUsers(this.form)
+				console.log(res, 'res注册');
+				this.loginFlagChange()
 			},
 			//注册账号api
 
@@ -164,7 +143,7 @@
 				} else {
 					this.checkflag = false
 				}
-				console.log(this.checkflag,'this.checkFlag');
+				console.log(this.checkflag, 'this.checkFlag');
 			},
 			// 忘记密码
 			navto() {
