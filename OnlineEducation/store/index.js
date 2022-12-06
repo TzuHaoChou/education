@@ -21,6 +21,12 @@ const store = new Vuex.Store({
 			if(data.token){
 				uni.setStorageSync(TOKEN,data.token) 
 			}
+		},
+		gettolog(state,data){
+			if(data==200){
+				uni.removeStorageSync(TOKEN)
+				uni.removeStorageSync(INFO)
+			}
 		}
 	},
 	getters: {

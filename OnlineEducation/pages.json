@@ -92,8 +92,9 @@
             "path" : "pages/my/user-safe",
             "style" :                                                                                    
             {
-                "navigationBarTitleText": "",
-                "enablePullDownRefresh": false
+                "navigationBarTitleText": "修改密码",
+                "enablePullDownRefresh": false,
+				"navigationBarBackgroundColor": "#fff"
             }
             
         }

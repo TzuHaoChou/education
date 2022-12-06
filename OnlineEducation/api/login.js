@@ -37,8 +37,25 @@ export default {
 		return request({
 			url:'/mobile/forget',
 			data,
-			method:"post",
+			method:"POST",
 		})
 	},
+	//修改密码
+	ChagingPassword(data){
+		return request({
+			url:'/mobile/update_password',
+			method:"POST",
+			data,
+		})
+	},
+	//退出登录
+	// http://demonuxtapi.dishait.cn/mobile/logout
+	gotologin(data){
+		return request({
+			url:'/mobile/logout',
+			method:'POST',
+			data
+		})
+	}
 }
 
